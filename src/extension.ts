@@ -70,7 +70,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.window,
       );
       // Index ファイルを作る
-      createFile(IndexFileUrl, isTypescript ? IndexTsTemplate(options) : IndexTsTemplate(options), vscode.window);
+      // createFile(IndexFileUrl, isTypescript ? IndexTsTemplate(options) : IndexTsTemplate(options), vscode.window);
 
       const openFiles = config.get('openFiles') as FileType[];
       const textDocumentShowOptions: vscode.TextDocumentShowOptions = {

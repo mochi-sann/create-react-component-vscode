@@ -6,7 +6,7 @@ export type Props = {}
 
 const ${name}: React.VFC<Props> = (props) => {
   return (
-    <>${name}</>
+    <div>${name}</div>
   )
 }
 
