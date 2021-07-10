@@ -144,7 +144,7 @@
     "pretest": "npm run compile",
     "test:integration": "npm run compile && node ./out/integration-test/runTest.js",
     "test:unit": "mocha -r ts-node/register 'src/**/*.test.ts' --exclude 'src/integration-test/**/*'",
-    "format" : "prettier --write \"./**/*.(ts|tsx|js)\""
+    "format": "prettier --write \"./**/*.(ts|tsx|js)\""
   },
   "devDependencies": {
     "@types/chai": "^4.2.5",

@@ -77,4 +77,11 @@ Default.args = {
 
 `;
 
-export { typescriptComponentTemplate, typescriptTestTemplate, StoryBookTSTemplate };
+const IndexTsTemplate = ({ name, functionType }: TemplateOptions) => `
+import ${name} , {Props} from "./${name}"
+import React from "React"
+
+export default name; 
+`;
+
+export { typescriptComponentTemplate, typescriptTestTemplate, StoryBookTSTemplate, IndexTsTemplate };

@@ -7,10 +7,12 @@ import {
 } from './template/javascriptTemplate';
 import TemplateOptions, { FileExtension, FileType, FunctionType, TestLibrary } from './template/templateOptions';
 import {
+  StoryBookTSTemplate,
   typescriptComponentTemplate,
   typescriptTestTemplate,
-  StoryBookTSTemplate,
+  IndexTsTemplate
 } from './template/typescriptTemplate';
+import { indexTemplate } from './template/indexTemplate';
 
 export function activate(context: vscode.ExtensionContext) {
   const disposable = vscode.commands.registerCommand('extension.createReactComponent', async (uri: vscode.Uri) => {
@@ -32,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
       };
       const createModule = config.get('createModule') as boolean;
       const dir = createModule ? `${uri.path}/${componentName}` : uri.path;
-      const indexUri = `${dir}/index.${isTypescript ? 'ts' : 'js'}`;
+      const indexUri = `${dir}/index.${isTypescript ? 'tsx' : 'jsx'}`;
       const isWithX = options.fileExtension === 'withX';
       const typescriptFileExtension = isWithX ? 'tsx' : 'ts';
       const javascriptFileExtension = isWithX ? 'jsx' : 'js';
@@ -40,11 +42,12 @@ export function activate(context: vscode.ExtensionContext) {
       const componentUri = `${dir}/${componentName}.${fileExtension}`;
       const testFileUri = `${dir}/${componentName}.test.${fileExtension}`;
       const StoriesFileUri = `${dir}/${componentName}.stories.${fileExtension}`;
+      const IndexFileUrl = `${dir}/index.${fileExtension}`;
 
       if (createModule) {
         // フォルダーを作る
         createFolder(dir, vscode.window);
-        // createFile(indexUri, indexTemplate(options), vscode.window);
+        createFile(indexUri, indexTemplate(options), vscode.window);
       }
       // Componentファイルを作る
       createFile(
@@ -66,6 +69,8 @@ export function activate(context: vscode.ExtensionContext) {
         isTypescript ? StoryBookTSTemplate(options) : StoryBookJSTemplate(options),
         vscode.window,
       );
+      // Index ファイルを作る
+      createFile(IndexFileUrl, isTypescript ? IndexTsTemplate(options) : IndexTsTemplate(options), vscode.window);
 
       const openFiles = config.get('openFiles') as FileType[];
       const textDocumentShowOptions: vscode.TextDocumentShowOptions = {
