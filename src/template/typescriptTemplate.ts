@@ -59,17 +59,17 @@ const StoryBookTSTemplate = ({ name, functionType }: TemplateOptions) => `
 import { Meta, Story } from "@storybook/react"
 import React from "react"
 
-import ${name}, { Props } from "./${name}"
+import ${name.substring(0, 1).toUpperCase() + name.substring(1)}, { Props } from "./${name}"
 
 export default {
-  title: "coponent/${name}",
-  component: ${name},
+  title: "coponent/${name.substring(0, 1).toUpperCase() + name.substring(1)}",
+  component: ${name.substring(0, 1).toUpperCase() + name.substring(1)},
   argTypes: {
     
   }
 } as Meta
 
-const Template: Story<Props> = (args) => <${name} {...args} />
+const Template: Story<Props> = (args) => <${name.substring(0, 1).toUpperCase() + name.substring(1)} {...args} />
 
 export const Default = Template.bind({})
 Default.args = {

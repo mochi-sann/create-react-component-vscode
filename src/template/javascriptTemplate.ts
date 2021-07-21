@@ -56,17 +56,17 @@ describe('${name}', () => {
 const StoryBookJSTemplate = ({ name, functionType }: TemplateOptions) => `
 import React from "react"
 
-import ${name} from "./${name}"
+import ${name.substring(0, 1).toUpperCase() + name.substring(1)} from "./${name}"
 
 export default {
-  title: "coponent/${name}",
-  component: ${name},
+  title: "coponent/${name.substring(0, 1).toUpperCase() + name.substring(1)}",
+  component: ${name.substring(0, 1).toUpperCase() + name.substring(1)},
   argTypes: {
     
   }
 }
 
-const Template = (args) => <${name} {...args} />
+const Template = (args) => <${name.substring(0, 1).toUpperCase() + name.substring(1)} {...args} />
 
 export const Default = Template.bind({})
 Default.args = {
